@@ -7,12 +7,10 @@ import org.yearup.repository.ProductRepository;
 import java.util.List;
 
 @Service
-public class ProductService
-{
+public class ProductService {
     private final ProductRepository productRepository;
 
-    public ProductService(ProductRepository productRepository)
-    {
+    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
@@ -26,7 +24,6 @@ public class ProductService
                        .filter(p -> minPrice == null || p.getPrice() >= minPrice)
                        .filter(p -> maxPrice == null || p.getPrice() <= maxPrice)
                        .filter(p -> subCategory == null || subCategory.equalsIgnoreCase(p.getSubCategory()))
-                       .filter(Product::isFeatured)
                        .toList();
     }
 
