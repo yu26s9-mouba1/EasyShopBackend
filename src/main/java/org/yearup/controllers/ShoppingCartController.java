@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.yearup.models.CartItem;
 import org.yearup.models.ShoppingCart;
 import org.yearup.models.ShoppingCartItem;
 import org.yearup.models.User;
@@ -19,15 +20,17 @@ import java.security.Principal;
 @PreAuthorize("isAuthenticated()")
 public class ShoppingCartController {
 
+    private final ShoppingCartRepository shoppingCartRepository;
     // a shopping cart controller depends on the service layer
     private ShoppingCartService shoppingCartService;
     private UserService userService;
 
 
     //Constructor Injection
-    public ShoppingCartController(ShoppingCartService shoppingCartService, UserService userService) {
+    public ShoppingCartController(ShoppingCartService shoppingCartService, UserService userService, ShoppingCartRepository shoppingCartRepository) {
         this.shoppingCartService = shoppingCartService;
         this.userService = userService;
+        this.shoppingCartRepository = shoppingCartRepository;
     }
 
 
@@ -72,7 +75,7 @@ public class ShoppingCartController {
         //return the cart (200 OK)
         return ResponseEntity.ok(cart);
     }
-
+    
 
 
     // Clears all products from the current users cart
