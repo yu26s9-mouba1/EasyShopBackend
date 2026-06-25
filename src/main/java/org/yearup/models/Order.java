@@ -25,7 +25,7 @@ public class Order {
     private String state;
     private String zip;
 
-    @Column(name = "shipping_name")
+    @Column(name = "shipping_amount")
     private BigDecimal shippingAmount =  BigDecimal.ZERO;
 
     //Getters and setters
@@ -84,6 +84,7 @@ public class Order {
     public void setZip(String zip) {
         this.zip = zip;
     }
+
 
     public BigDecimal getShippingAmount() {
         return shippingAmount;
