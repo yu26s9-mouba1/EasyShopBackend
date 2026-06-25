@@ -1,5 +1,6 @@
 package org.yearup.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/orders")
+@PreAuthorize("isAuthenticated()")
 public class OrdersController {
 
     private final OrderService orderService;
